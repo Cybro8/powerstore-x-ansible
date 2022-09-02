@@ -1,0 +1,1 @@
+demo-ansible-vm ansible_host=192.168.8.36 ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123! ansible_ssh_common_args='-o StrictHostKeyChecking=no'

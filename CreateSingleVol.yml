@@ -1,0 +1,36 @@
+###
+---
+- name: Creation of Single Volumes
+  hosts: localhost
+  connection: local
+  vars:
+    array_ip: 192.168.3.200
+    user: psadmin
+    password: Password123!
+
+## Add your name and a number to the end of vol_name Parameter value ##
+## This value needs to be unique as it creates a Volume with that name on the PowerStore ##
+## Example: "vol_name: ps01_SingleVol_JuanM01", if you run again update to "ps01_SingleVol_JuanM02" ##
+## After appending your press "CTRL + S" to save changes ####
+##############################
+    vol_name: ps01_SingleVol_
+##############################
+
+    size: 15
+    cap_unit: GB
+
+  tasks:
+  - name: Create Single Volume
+    register: result_vol
+    dellemc_powerstore_volume:
+      array_ip: "{{array_ip}}"
+      user: "{{user}}"
+      password: "{{password}}"
+      verifycert: False
+      vol_name: "{{vol_name}}"
+      size: "{{size}}"
+      cap_unit: "{{cap_unit}}"
+      state: absent
+
+  - debug:
+      var: result_vol

@@ -1,0 +1,36 @@
+---
+array_ip: 192.168.9.200
+user: 'admin'
+password: 'Password123!'
+verifycert: False
+
+vol_name: 'AnsibleDemoVMFS'  #PowerStore & VC Datastore Name
+esx_host: 'esxi01-ps5x1.demo.local'
+hg_name: 'ps01-HostGroup'
+new_datastore: 'AnsibleDemoVMFS'
+vm_name: 'demo-ansible-vm'
+orig_datastore: 'esxi01_ds'
+vm_initiator: 'iqn.1994-05.com.demo-ansible-ps01'
+
+
+volumes:
+  - volname: demo-ansible-vol01
+    vgname: ''
+    volsize: 50
+    volcapunit: 'GB'
+    voldesc: "vol01 Ansible Demo"
+
+  - volname: demo-ansible-vol02
+    vgname: ''
+    volsize: 75
+    volcapunit: 'GB'
+    voldesc: "vol02 Ansible Demo"
+
+fs:
+  - mount_path: /data/ps01
+    volname: demo-ansible-vol01
+    fstype: xfs
+
+  - mount_path: /data/ps02
+    volname: demo-ansible-vol02
+    fstype: xfs

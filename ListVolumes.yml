@@ -1,0 +1,21 @@
+---
+- name: List All Volumes on PowerStore
+  hosts: localhost
+  connection: local
+  vars:
+    array_ip: 192.168.3.200
+    user: psadmin
+    password: Password123!
+  tasks:
+  - name: List Volumes
+    dellemc_powerstore_gatherfacts:
+      array_ip: "{{array_ip}}"
+      user: "{{user}}"
+      password: "{{password}}"
+      verifycert: False
+      gather_subset:
+        - vol
+    register: data
+
+  - debug:
+      var: data
